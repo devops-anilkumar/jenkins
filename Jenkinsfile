@@ -1,3 +1,4 @@
+// example of showing declearitive pipeline
 pipeline {
     agent any
     stages {
@@ -15,7 +16,10 @@ pipeline {
          }
           stage ('stage name - 3') {
             steps {
-                sh "echo i am excuting stage 3"
+                sh '''echo i am using pipeline syntax help
+                      echo demo to show multiple lines
+                      echo printing multiple lines with a single usage of sh
+                    '''
             }
           }
     }
