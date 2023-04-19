@@ -1,6 +1,12 @@
 // example of showing declearitive pipeline
 pipeline {
     agent any
+
+        environment { 
+           ENV_URL = "pipeline.learning.com"
+        }
+
+
     stages {
          
          stage ('stage name - 1') {
@@ -11,7 +17,7 @@ pipeline {
     
          stage ('stage name - 2') {
             steps {
-            sh "echo i am excuting stage 2"
+            sh "echo printing the environment variable $ENV_URL"
             }
          }
           stage ('stage name - 3') {
