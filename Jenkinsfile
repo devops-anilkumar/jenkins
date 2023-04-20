@@ -25,7 +25,7 @@ pipeline {
          
          stage ('stage name - 1') {
             steps {
-            sh "echo this is my first stage in jenkins pipeline"
+            sh "echo this is my first stage in the jenkins pipeline"
             }
          }
     
