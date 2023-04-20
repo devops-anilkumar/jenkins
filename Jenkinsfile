@@ -20,11 +20,14 @@ pipeline {
    //      password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
    //  }
 
+    tools {
+        maven 'apache-maven-3.0.1' 
+    }
 
     stages {
          stage ('testing mvn commands'){
          steps{
-            sh "mvn  clean"
+            sh "mvn  --version"
          }   
     }
          stage ('stage name - 1') {
