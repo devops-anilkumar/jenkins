@@ -42,7 +42,15 @@ pipeline {
             sh "env"
             }
          }
-          stage ('stage name - 3') {
+         stage ('final stage ; needs attention') {
+           input {
+                message "Should we continue?"
+                ok "Yes, we should."
+                submitter "alice,bob"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                }
+            }
                        environment { 
            ENV_URL = "stage.learning.com"  // declaring varibles at stage  level in pipeline 
         }
