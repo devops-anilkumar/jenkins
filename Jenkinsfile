@@ -3,7 +3,7 @@ pipeline {
     agent any
 
         environment { 
-           ENV_URL = "pipeline.learning.com"
+           ENV_URL = "pipeline.learning.com"  // declaring varibles at pipeline level
         }
 
 
@@ -22,9 +22,13 @@ pipeline {
          }
           stage ('stage name - 3') {
             steps {
+                       environment { 
+           ENV_URL = "stage.learning.com"  // declaring varibles at stage  level in pipeline 
+        }
                 sh '''echo i am using pipeline syntax help
                       echo demo to show multiple lines
-                      echo printing multiple lines with a single usage of sh
+                      echo printing multiple lines with a single usage of sh command
+                      echo printing the environment variable ${ENV_URL}
                     '''
             }
           }
