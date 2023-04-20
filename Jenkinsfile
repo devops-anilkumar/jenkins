@@ -4,6 +4,7 @@ pipeline {
 
         environment { 
            ENV_URL = "pipeline.learning.com"  // declaring varibles at pipeline level
+           SSH_CREDENTIALS = credentials('SSH_CRED')
         }
 
 
@@ -18,6 +19,7 @@ pipeline {
          stage ('stage name - 2') {
             steps {
             sh "echo printing the environment variable ${ENV_URL}"
+             sh "env"
             }
          }
           stage ('stage name - 3') {
