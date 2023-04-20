@@ -21,10 +21,10 @@ pipeline {
             }
          }
           stage ('stage name - 3') {
-            steps {
                        environment { 
            ENV_URL = "stage.learning.com"  // declaring varibles at stage  level in pipeline 
         }
+           steps {
                 sh '''echo i am using pipeline syntax help
                       echo demo to show multiple lines
                       echo printing multiple lines with a single usage of sh command
