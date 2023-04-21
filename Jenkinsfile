@@ -1,6 +1,6 @@
 // example of showing declearitive pipeline
 pipeline {
-    agent any
+    agent (label 'ws' )
 
         environment { 
            ENV_URL = "pipeline.learning.com"  // declaring varibles at pipeline level
@@ -29,6 +29,7 @@ pipeline {
          parallel{
             stage ('one'){
                steps{
+                  sh "ifconfig"
                   sh "echo stage one"
                   sh "sleep 6"
                }
