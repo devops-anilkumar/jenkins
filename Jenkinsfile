@@ -30,19 +30,19 @@ pipeline {
             stage ('one'){
                steps{
                   sh "echo stage one"
-                  sh "sleep 10"
+                  sh "sleep 6"
                }
             }
            stage ('two'){
                steps{
                   sh "echo stage two"
-                  sh "sleep 10"
+                  sh "sleep 6"
                }
             }
            stage ('three'){
                steps{
                   sh "echo stage three"
-                  sh "sleep 10"
+                  sh "sleep 6"
                }
             }
          }
