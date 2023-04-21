@@ -25,6 +25,28 @@ pipeline {
     }
 
     stages {
+      stage ('example on parallel stages'){
+         parallel{
+            stage ('one'){
+               steps{
+                  sh "echo stage one"
+                  sh "sleep 10"
+               }
+            }
+           stage ('two'){
+               steps{
+                  sh "echo stage two"
+                  sh "sleep 10"
+               }
+            }
+           stage ('three'){
+               steps{
+                  sh "echo stage three"
+                  sh "sleep 10"
+               }
+            }
+         }
+      }
          stage ('testing mvn commands'){
          steps{
             sh "mvn  --version"
