@@ -29,7 +29,7 @@ pipeline {
          parallel{
             stage ('one'){
                steps{
-                  sh "ifconfig"
+                  sh "cat /home/centos/file.txt"
                   sh "echo stage one"
                   sh "sleep 6"
                }
