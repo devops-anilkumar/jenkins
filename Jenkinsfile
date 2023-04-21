@@ -1,6 +1,6 @@
 // example of showing declearitive pipeline
 pipeline {
-    agent (label 'ws' )
+    agent { label 'ws' }
 
         environment { 
            ENV_URL = "pipeline.learning.com"  // declaring varibles at pipeline level
