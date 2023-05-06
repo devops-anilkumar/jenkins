@@ -8,24 +8,15 @@ pipeline {
         ansiColor('xterm')  // ADD'S COLOUR TO THE OUTPUT : ENSURE YOU INSTALL ANSICOLOR PLUGIN
     }
     stages {
-        // stage('Terraform Destroy Databases') {
-        //     steps {
-        //         git branch: 'main', url: 'https://github.com/devops-anilkumar/terraform-databases.git'
-        //       sh "terrafile -f env-${ENV}/Terrafile"
-        //       sh "terraform init -backend-config=env-${ENV}/${ENV}-backend.tfvars"
-        //       sh "terraform plan -var-file=env-${ENV}/${ENV}.tfvars"
-        //       sh "terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars"
-        //     }
-        // }
         stage('Terraform Destroy Databases') {
             steps {
                 git branch: 'main', url: 'https://github.com/devops-anilkumar/terraform-databases.git'
-                        sh "terrafile -f env-${ENV}/Terrafile"
-                        sh "terraform init --backend-config=env-${ENV}/${ENV}-backend.tfvars -reconfigure"
-                        sh "terraform destroy -var-file=env-${ENV}/${ENV}.tfvars -auto-approve"
-                    }
-                } 
-
+              sh "terrafile -f env-${ENV}/Terrafile"
+              sh "terraform init -backend-config=env-${ENV}/${ENV}-backend.tfvars"
+              sh "terraform plan -var-file=env-${ENV}/${ENV}.tfvars"
+              sh "terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars"
+            }
+        }
         stage('Terraform Destroy Network') {
             steps {
                 git branch: 'main', url: 'https://github.com/devops-anilkumar/terraform-vpc.git'
