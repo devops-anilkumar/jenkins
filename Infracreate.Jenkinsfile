@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Terraform Create Network') {
             steps {
-                git branch: 'main', url: 'https://github.com/devops-anilkumar/tf-module-vpc.git'
+                git branch: 'main', url: 'https://github.com/devops-anilkumar/terraform-vpc.git'
               sh "terrafile -f env-${ENV}/Terrafile"
               sh "terraform init -backend-config=env-${ENV}/${ENV}-backend.tfvars"
               sh "terraform plan -var-file=env-${ENV}/${ENV}.tfvars"
