@@ -9,7 +9,7 @@ pipeline {
     }
     stages {
         stage('Backend') {
-        parallel
+        parallel {
         stage('Destroy Cart') {
             steps {
             dir('cart')  { git branch: 'main', url: 'https://github.com/devops-anilkumar/cart.git' }
@@ -77,6 +77,7 @@ pipeline {
             }
         }
     }
+}
         stage('Terraform Destroy Databases') {
             steps {
                 git branch: 'main', url: 'https://github.com/devops-anilkumar/terraform-databases.git'
