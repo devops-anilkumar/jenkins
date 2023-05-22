@@ -36,7 +36,7 @@ pipeline {
             }
         }
         stage('Backend') {
-        parallel
+        parallel {
         stage('Creating Cart') {
             steps {
             dir('cart')  { git branch: 'main', url: 'https://github.com/devops-anilkumar/cart.git' }
