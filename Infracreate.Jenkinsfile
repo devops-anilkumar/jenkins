@@ -76,20 +76,36 @@ pipeline {
             }
         }
     }
-        stage('Creating Shipping') {
-            steps {
-            dir('shipping') { git branch: 'main', url: 'https://github.com/devops-anilkumar/shipping.git' 
-              sh '''
-              cd mutable-infra
-              sleep 30
-              terrafile -f env-${ENV}/Terrafile
-              terraform init -reconfigure -backend-config=env-${ENV}/${ENV}-backend.tfvars
-              terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.2
-              terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.2
-              '''
-            }
-        }
-   }
+  //       stage('Creating Shipping') {
+  //           steps {
+  //           dir('shipping') { git branch: 'main', url: 'https://github.com/devops-anilkumar/shipping.git' 
+  //             sh '''
+  //             cd mutable-infra
+  //             sleep 30
+  //             terrafile -f env-${ENV}/Terrafile
+  //             terraform init -reconfigure -backend-config=env-${ENV}/${ENV}-backend.tfvars
+  //             terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.2
+  //             terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.2
+  //             '''
+  //           }
+  //       }
+  //  }
+
+            stage('Creating-Shipping') {
+                steps {
+                    dir('SHIPPING') {  git branch: 'main', url: 'https://github.com/devops-anilkumar/shipping.git'
+                          sh '''
+                            cd mutable-infra
+                            sleep 30   
+                            terrafile -f env-${ENV}/Terrafile
+                            terraform init -backend-config=env-${ENV}/${ENV}-backend.tfvars
+                            terraform apply -var-file=env-${ENV}/${ENV}.tfvars  -var APP_VERSION=0.0.2  -auto-approve
+                          '''
+                            }
+                        }
+                    }
+
+
         stage('Creating Payment') {
             steps {
             dir('payment') { git branch: 'main', url: 'https://github.com/devops-anilkumar/payment.git' 
