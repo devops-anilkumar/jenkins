@@ -44,6 +44,7 @@ pipeline {
                  cd mutable-infra
                  terrafile -f env-${ENV}/Terrafile
                  terraform init -reconfigure -backend-config=env-${ENV}/${ENV}-backend.tfvars
+                 terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.5
                  terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.5
               '''
             }
@@ -56,6 +57,7 @@ pipeline {
                 cd mutable-infra
                 terrafile -f env-${ENV}/Terrafile
                 terraform init -reconfigure -backend-config=env-${ENV}/${ENV}-backend.tfvars
+                terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.8
                 terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.8
               '''
             }
@@ -68,6 +70,7 @@ pipeline {
               cd mutable-infra
               terrafile -f env-${ENV}/Terrafile
               terraform init -reconfigure -backend-config=env-${ENV}/${ENV}-backend.tfvars
+              terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.1
               terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.1
               '''
             }
@@ -75,11 +78,12 @@ pipeline {
     }
         stage('Creating Shipping') {
             steps {
-            dir('shipping') { git branch: 'main', url: 'https://github.com/devops-anilkumar/shipping.git' 
+            dir('shipping') { git branch: 'main', url: "https://github.com/devops-anilkumar/shipping.git" 
               sh '''
               cd mutable-infra
               terrafile -f env-${ENV}/Terrafile
               terraform init -reconfigure -backend-config=env-${ENV}/${ENV}-backend.tfvars
+              terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.2
               terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.2
               '''
             }
@@ -92,6 +96,7 @@ pipeline {
               cd mutable-infra
               terrafile -f env-${ENV}/Terrafile
               terraform init -reconfigure -backend-config=env-${ENV}/${ENV}-backend.tfvars
+              terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.2
               terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.2
               '''
             }
@@ -103,7 +108,8 @@ pipeline {
               sh '''
               cd mutable-infra
               terrafile -f env-${ENV}/Terrafile
-              terraform init -reconfigure -backend-config=env-${ENV}/${ENV}-backend.tfvars 
+              terraform init -reconfigure -backend-config=env-${ENV}/${ENV}-backend.tfvars
+              terraform plan -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.1 
               terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.1
               '''
             }
