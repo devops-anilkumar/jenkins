@@ -107,7 +107,7 @@ pipeline {
               terraform apply -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.1
               '''
             }
-            }
+          }
         }
       }
     }
