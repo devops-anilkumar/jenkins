@@ -87,7 +87,6 @@ pipeline {
   }
       stage('Creating Shipping') {
          steps {
-         sh "rm -rf *"
          dir('shipping') { git branch: 'main', url: 'https://github.com/devops-anilkumar/shipping.git'
            sh '''
              cd mutable-infra
