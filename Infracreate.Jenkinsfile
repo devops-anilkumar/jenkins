@@ -75,7 +75,7 @@ pipeline {
     }
         stage('Creating Shipping') {
             steps {
-            dir('shipping') { git branch: 'main', url: 'https://github.com/devops-anilkumar/shipping.git' 
+            dir('shipping') { git branch: 'main', url: 'https://github.com/devops-anilkumar/shipping.git'
               sh '''
               cd mutable-infra
               terrafile -f env-${ENV}/Terrafile
