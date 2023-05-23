@@ -80,7 +80,7 @@ pipeline {
               cd mutable-infra
               terrafile -f env-${ENV}/Terrafile
               terraform init -reconfigure -backend-config=env-${ENV}/${ENV}-backend.tfvars
-              terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.2
+              terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.3
               '''
             }
         }
