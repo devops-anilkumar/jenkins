@@ -73,18 +73,6 @@ pipeline {
             }
         }
     }
-        stage('Creating Shipping') {
-            steps {
-            dir('shipping') { git branch: 'main', url: 'https://github.com/devops-anilkumar/shipping.git'
-              sh '''
-              cd mutable-infra
-              terrafile -f env-${ENV}/Terrafile
-              terraform init -reconfigure -backend-config=env-${ENV}/${ENV}-backend.tfvars
-              terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.3
-              '''
-            }
-        }
-    }
         stage('Creating Payment') {
             steps {
             dir('payment') { git branch: 'main', url: 'https://github.com/devops-anilkumar/payment.git' 
@@ -97,6 +85,19 @@ pipeline {
             }
         }
   }
+          stage('Creating Shipping') {
+            steps {
+            dir('shipping') { git branch: 'main', url: 'https://github.com/devops-anilkumar/shipping.git'
+              sh '''
+              cd mutable-infra
+              sleep 30
+              terrafile -f env-${ENV}/Terrafile
+              terraform init -reconfigure -backend-config=env-${ENV}/${ENV}-backend.tfvars
+              terraform destroy -auto-approve -var-file=env-${ENV}/${ENV}.tfvars -var APP_VERSION=0.0.3
+              '''
+            }
+        }
+    }
         stage('Creating Frontend') {
             steps {
             dir('frontend') { git branch: 'main', url: 'https://github.com/devops-anilkumar/frontend.git' 
